@@ -1,9 +1,15 @@
 import React from 'react';
+import NewsArticle from './NewsArticle';
 
-function NewsArticleList() {
+function NewsArticleList(props) { // props will recieve the articles array
+    const { articles } = props;
     return (
-        <div>
-            News Article List placeholder
+        <div className='news-article-list'>
+            <h2>News Articles</h2>
+            {articles.map((article, index) => ( // Map over the articles array
+                <NewsArticle key={index} article={article} /> // Render NewsArticle for each article
+            
+            ))}
         </div>
     );
 }
