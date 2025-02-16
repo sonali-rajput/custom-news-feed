@@ -3,6 +3,7 @@ import NewsArticle from './NewsArticle';
 
 function NewsArticleList(props) { // props will recieve the articles array
     const { articles } = props;
+    console.log("NewsArticleList - articles prop recieved:", articles);
     return (
         <div className='news-article-list'>
             <h2>News Articles</h2>

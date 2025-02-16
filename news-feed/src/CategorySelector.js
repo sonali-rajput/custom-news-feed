@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function CategorySelector(props) { // now accepts props
 
 
     const { selectedCategories, onCategoryChange } = props; // Destructure props
 
-    const availableCategories = [/*... same categories array */];
+    const availableCategories = [
+        "Politics",
+        "Sports",
+        "Technology",
+        "Business",
+        "Entertainment",
+        "Health",
+        "Science",
+        "World News"
+    ];
 
     const handleCheckBoxChange = (category) => { // Renamed function to avoid confusion
         let updatedCategories = [...selectedCategories]; // create a coopy to avoid direct state mutation

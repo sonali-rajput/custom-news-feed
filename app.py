@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import datetime
 import logging
-
+from flask_cors import CORS
 
 
 load_dotenv()
@@ -12,6 +12,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
+CORS(app)
 
 logging.basicConfig(level=logging.ERROR,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -19,7 +20,11 @@ logging.basicConfig(level=logging.ERROR,
 
 @app.route('/news/categories')
 def get_default_news_categories():
-    return get_news_from_gnews_api("general")
+    news = get_news_from_gnews_api("general")
+    if news and "error" not in news:
+        return jsonify(news)
+    else:
+        return jsonify({"error": "Failed to fetch news from Gnews API"}), 500
 
 
 
@@ -33,7 +38,7 @@ def get_news_by_categories(category_names):
 
     news = get_news_from_gnews_api(category=category_names, from_date=from_date_str, to_date=to_date_str)
     
-    if news:
+    if news and "error" not in news:
         return jsonify(news)
     else:
         return jsonify({"error": "Failed to fetch news from Gnews API"}), 500
@@ -75,7 +80,7 @@ def get_news_from_gnews_api(category="general", from_date=None, to_date=None):
         return news_data
     except requests.exceptions.RequestException as e:
         print(f"Error fetching news from Gnews API: {e}")
-        return None # return an empty dictionary or, handle the error as needed
+        return {"error": "Failed to fetch news from Gnews API"} # return an empty dictionary or, handle the error as needed
 
 
 
