@@ -4,27 +4,6 @@ import DateRangeSelector from './DateRangeSelector';
 import NewsArticleList from './NewsArticleList';
 
 function App() {
-  // Dummy News Article Data
-  // const DummyNewsArticles = [
-  //   {
-  //     title: "Tech Company Announces Groundbreaking Innovation",
-  //     description: "A major tech company has unveiled a revolutionary new technology that could change the industry.",
-  //     source: "Tech News Source",
-  //     url:"https://technewssource.com/innovation-announcement",
-  //   },
-  //   {
-  //     title: "Sports Team Wins Championship After Thrilling Game",
-  //     description: "In a nail-biting final, the home team clinched the championship title with a last-minute goal.",
-  //     source: "Sports Daily",
-  //     url: "https://sportsdaily.com/championship-win-report",
-  //   },
-  //   {
-  //     title: "Political Leaders Meet for International Summit",
-  //     description: "World leaders gathered for a crucial summit to discuss global challenges and cooperation.",
-  //     source: "Global News Network",
-  //     url: "https://globalnewsnetwork.org/international-summit-updates",
-  //   },
-  // ];
 
   // ---Lifted state from categorySelector and dataRangeselector ---
   const [selectedCategories, setSelectedCategories] = useState([]); // state for selected categories (initially empty)
@@ -103,7 +82,7 @@ function App() {
         fromDate={fromDate} // Pass fromDate state as prop
         toDate={toDate}     // Pass toDate state as prop
         onFromDateChange={handleFromDateChange} // Pass handleFromDateChange fn as prop
-        onToDateChanfe={handleToDateChange}     // Pass handleToDateChange fn as prop
+        onToDateChange={handleToDateChange}     // Pass handleToDateChange fn as prop
         />
         <NewsArticleList articles={newsArticles} /> {/* Pass newsArticle state as props, Props are how we pass data from a parent component (like App) to a child component*/}
       </main>

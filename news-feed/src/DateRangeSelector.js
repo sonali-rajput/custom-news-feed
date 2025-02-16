@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 
-function DateRangeSelector() {
+function DateRangeSelector(props) { // now accept props
 
-    // State variable for fromDate and toDate
-    const [fromDate, setFromDate] = useState(''); // Initialize with empty strings
-    const [toDate, setToDate] = useState('');
+    const {fromDate, toDate, onFromDateChange, onToDateChange } = props; // destrcuture props
 
     // Function to handle Changes in the "From Date" input
-    const handleFromDateChange = (event) => {
-        setFromDate(event.target.value); // Update fromDate state with the input value
+    const handleFromInputChange = (event) => {
+        onFromDateChange(event.target.value); // Call onFromDateChange prop to update state in App
     };
 
      // Function to handle Changes in the "To Date" input
-     const handleToDateChange = (event) => {
-        setToDate(event.target.value); // Update toDate state with the input value
+     const handleToInputChange = (event) => {
+        onToDateChange(event.target.value); // Call onToDateChange prop to update state in App
     };
 
 
@@ -27,8 +25,8 @@ function DateRangeSelector() {
                     type='text' // for now use type 'text' can use type 'date' later.
                     id='fromDate'
                     name='fromDate'
-                    value={fromDate}  // Input value is controlled by fromDate state
-                    onChange={handleFromDateChange} // Call handleFromDateChange for input change
+                    value={fromDate}  // now uses fromDate prop
+                    onChange={handleFromInputChange} // Call handleFromInputChange for input change
                     placeholder='YYYY-MM-DD'
                     />
                 </div>
@@ -38,8 +36,8 @@ function DateRangeSelector() {
                     type='text' // for now use type 'text' can use type 'date' later.
                     id='toDate'
                     name='toDate'
-                    value={toDate}  // Input value is controlled by fromDate state
-                    onChange={handleToDateChange} // Call handleFromDateChange for input change
+                    value={toDate}  // now uses toDate prop
+                    onChange={handleToInputChange} // Call handleToInputChange for input change
                     placeholder='YYYY-MM-DD'
                     />
                 </div>
