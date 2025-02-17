@@ -9,7 +9,7 @@ function NewsArticle(props) {  // Props are an object containing data passed dow
             <p>{article.description}</p>
             <p>Source: {article.source.name}</p>
             <p><a href={article.url} target="_blank" rel="noopener noreferrer">Read Full Article</a></p>
-            <hr/> {/*horizontal line */}
+            <hr /> {/*horizontal line */}
         </div>
     );
 }

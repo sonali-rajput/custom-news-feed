@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import CategorySelector from './CategorySelector';
-import DateRangeSelector from './DateRangeSelector';
-import NewsArticleList from './NewsArticleList';
+import CategorySelector from './components/CategorySelector';
+import DateRangeSelector from './components/DateRangeSelector';
+import NewsArticleList from './components/NewsArticleList';
 
 function App() {
 
@@ -26,7 +26,7 @@ function App() {
 
 
     // Add date range query parameters if dates are selected
-    if(fromDate) {
+    if (fromDate) {
       apiUrl += `?from_date=${fromDate}`;
     }
     if (toDate) {
@@ -41,20 +41,27 @@ function App() {
       }
       console.log("fetchNews API response was ok!");
       const data = await response.json(); // parse json response
-      console.log(data);  // for debugging 
-      setNewsArticles([...(data.articles || [])]); // update newsArticels state with API data (or empty array if no articles)
-      console.log("fetchNews newsArticles state updated to:", data.articles);
-    } catch(error) {
+      console.log("API Response Data:", data);  // for debugging 
+
+      if (data.articles) {
+        // setNewsArticles(data.articles);
+        setNewsArticles([...(data.articles || [])]); // update newsArticels state with API data (or empty array if no articles)
+        console.log("fetchNews newsArticles state updated to:", [...data.articles]);
+      } else {
+        setNewsArticles([]);
+      }
+
+    } catch (error) {
       console.error("Error fetching news: ", error);
-      setNewsArticles([]); // Set newsArticles to empty array in case of error 
+      // setNewsArticles([]); // Set newsArticles to empty array in case of error 
     }
   }, [selectedCategories, fromDate, toDate]); //  Dependencies of useCallback are the *state values used inside fetchNews*
 
 
   // --- useEffect Hook to fetch News when selection change ---
-  useEffect( () => {
+  useEffect(() => {
     console.log("useEffect is running!")
-    console.log("useEffect - selectedCategories:", selectedCategories)
+    console.log("useEffect - categories changed:", selectedCategories)
     fetchNews(); // Call fetch news function whenever dependencies change
   }, [selectedCategories, fromDate, toDate, fetchNews]); // dependencies: fetch news is called when these change
 
@@ -62,8 +69,8 @@ function App() {
   // ---Handels to change state from child components---
   const handleCategoryChange = (categories) => {
     setSelectedCategories(categories); // update selectedCategories state in App.js
-    console.log("handleCategoryChange called with categories:", categories); // log the categories argument
-    console.log("selectedCategories state is now: ", categories); // log the updated satate
+    // console.log("handleCategoryChange called with categories:", categories); // log the categories argument
+    // console.log("selectedCategories state is now: ", categories); // log the updated satate
   };
 
   const handleFromDateChange = (date) => {
@@ -84,14 +91,14 @@ function App() {
       <main>
         {/* Passing Props to Child Components */}
         <CategorySelector
-        selectedCategories={selectedCategories} // Pass selectedCategories state as prop
-        onCategoryChange={handleCategoryChange} // Pass handleCategoryChange function as prop
+          selectedCategories={selectedCategories} // Pass selectedCategories state as prop
+          onCategoryChange={handleCategoryChange} // Pass handleCategoryChange function as prop
         />
         <DateRangeSelector
-        fromDate={fromDate} // Pass fromDate state as prop
-        toDate={toDate}     // Pass toDate state as prop
-        onFromDateChange={handleFromDateChange} // Pass handleFromDateChange fn as prop
-        onToDateChange={handleToDateChange}     // Pass handleToDateChange fn as prop
+          fromDate={fromDate} // Pass fromDate state as prop
+          toDate={toDate}     // Pass toDate state as prop
+          onFromDateChange={handleFromDateChange} // Pass handleFromDateChange fn as prop
+          onToDateChange={handleToDateChange}     // Pass handleToDateChange fn as prop
         />
         <NewsArticleList articles={newsArticles} /> {/* Pass newsArticle state as props, Props are how we pass data from a parent component (like App) to a child component*/}
       </main>
@@ -102,8 +109,8 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
 
-// when you create a component in a separate file, 
-// you need to explicitly tell JavaScript to make that component function available for use in other files (like App.js).  
+// when you create a component in a separate file,
+// you need to explicitly tell JavaScript to make that component function available for use in other files (like App.js).
 // This is done using the export default

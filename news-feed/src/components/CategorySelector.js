@@ -6,14 +6,14 @@ function CategorySelector(props) { // now accepts props
     const { selectedCategories, onCategoryChange } = props; // Destructure props
 
     const availableCategories = [
-        "Politics",
-        "Sports",
-        "Technology",
-        "Business",
-        "Entertainment",
-        "Health",
-        "Science",
-        "World News"
+        "politics",
+        "sports",
+        "technology",
+        "business",
+        "entertainment",
+        "health",
+        "science",
+        "world News"
     ];
 
     const handleCheckBoxChange = (category) => { // Renamed function to avoid confusion
