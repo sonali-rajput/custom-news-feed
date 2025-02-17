@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CategorySelector from './components/CategorySelector';
 import DateRangeSelector from './components/DateRangeSelector';
 import NewsArticleList from './components/NewsArticleList';
+import './App.css';
 
 function App() {
 

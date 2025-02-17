@@ -1,38 +1,150 @@
+/* src/App.css */
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: sans-serif; /* A clean, readable font */
+  max-width: 960px;       /* Limit width for readability on larger screens */
+  margin: 20px auto;      /* Center the app on the page, add top/bottom margin */
+  padding: 20px;          /* Add some padding inside the main container */
+  background-color: #f8f8f8; /* Light gray background */
+  border: 1px solid #e0e0e0; /* Light border to define the container */
+  border-radius: 8px;       /* Rounded corners for a softer look */
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;      /* Center the header text */
+  padding-bottom: 20px;   /* Add padding below the header */
+  border-bottom: 1px solid #e0e0e0; /* Separator line under header */
+  margin-bottom: 20px;    /* Margin below the header */
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  padding: 20px 0;        /* Padding for the main content area */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* src/App.css (Corrected CategorySelector CSS) */
+
+.category-selector {
+  margin-bottom: 20px; /* Space below category selector */
+}
+
+.category-selector h2 {
+  font-size: 1.2em;      /* Slightly larger heading for category selector */
+  margin-bottom: 10px;   /* Space below the heading */
+}
+
+/* Corrected class name: checkbox-group (not category-options) */
+.checkbox-group {
+  display: flex;          /* Use flexbox for horizontal layout of checkboxes */
+  flex-wrap: wrap;        /* Allow checkboxes to wrap to the next line on smaller screens */
+  gap: 10px;             /* Spacing between checkbox items */
+}
+
+/* Corrected class name: checkbox-item (not category-option) */
+.checkbox-item {
+  display: flex;          /* Flexbox for label and checkbox alignment */
+  align-items: center;     /* Vertically align checkbox and label */
+  margin-right: 15px;    /* Spacing between options in a row */
+  margin-bottom: 5px;     /* Spacing between rows of options */
+}
+
+/* Corrected class name: checkbox-item input[type="checkbox"] */
+.checkbox-item input[type="checkbox"] {
+  margin-right: 5px;     /* Spacing between checkbox and label */
+}
+
+
+
+/* src/App.css (Corrected DateRangeSelector CSS) */
+
+.date-range-selector {
+  margin-bottom: 20px; /* Space below date selector */
+}
+
+.date-range-selector h2 {
+  font-size: 1.2em;      /* Heading size */
+  margin-bottom: 10px;   /* Space below heading */
+}
+
+.date-inputs {
+  display: flex;          /* Flexbox for horizontal layout of date inputs */
+  gap: 20px;             /* Spacing between date input pairs */
+  align-items: center;     /* Vertically align labels and inputs */
+}
+
+/* Corrected class name: date-input-item (not date-input-group) */
+.date-input-item label {
+  margin-right: 5px;     /* Space between label and input */
+}
+
+/* Corrected class name: date-input-item (not date-input-group) */
+.date-input-item input[type="text"] { /* Assuming you are still using type="text" for now */
+  padding: 8px;          /* Padding inside date input fields */
+  border: 1px solid #ccc; /* Border for input fields */
+  border-radius: 4px;       /* Rounded corners for inputs */
+}
+
+/* src/App.css (NewsArticleList and NewsArticle CSS - Re-examined - Seems Correct) */
+
+/* src/App.css (Revised NewsArticleList and NewsArticle CSS - based on your code) */
+
+.news-article-list {
+  display: grid;             /* Use CSS Grid for article layout */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid columns */
+  gap: 20px;                /* Spacing between articles */
+  padding: 20px 0;         /* Add some padding around the list of articles */
+}
+
+.news-article {
+  border: 1px solid #ddd;    /* Light border for article cards */
+  border-radius: 8px;       /* Rounded corners for cards */
+  overflow: hidden;         /* Ensure image rounded corners work */
+  background-color: white;  /* White background for article cards */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+  transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+  padding: 15px;          /* Add padding inside article cards to give text some space */
+}
+
+.news-article:hover {
+  transform: scale(1.02); /* Slight scale up on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increased shadow on hover */
+}
+
+/* Styling for elements WITHIN .news-article using ELEMENT selectors (h3, p, a) */
+
+.news-article h3 { /* Style for the <h3> title within news-article */
+  font-size: 1.2em;      /* Slightly larger title */
+  margin-bottom: 8px;     /* Space below title */
+  font-weight: bold;      /* Make title bold */
+  line-height: 1.3;       /* Improve title line height */
+  margin-top: 0;          /* Reset default margin-top for h3 */
+}
+
+.news-article p { /* Style for the <p> description and source within news-article */
+  color: #555;             /* Grayish color for description/source text */
+  font-size: 0.95em;     /* Slightly smaller description text */
+  line-height: 1.4;       /* Improve line height */
+  margin-bottom: 10px;    /* Space below paragraphs */
+  margin-top: 0;          /* Reset default margin-top for p */
+}
+
+.news-article p:last-child { /* Remove margin-bottom from the very last <p> element in an article (e.g., "Read Full Article" link paragraph) */
+    margin-bottom: 0;
+}
+
+
+.news-article a { /* Style for the <a> link within news-article */
+  color: #007bff;         /* Example: blue link color */
+  text-decoration: none;   /* Remove default underline */
+  font-weight: bold;
+}
+
+.news-article a:hover { /* Hover effect for links */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.news-article hr { /* Style for the <hr> horizontal rule */
+    border: 0;
+    border-bottom: 1px solid #e0e0e0; /* Light gray horizontal line */
+    margin: 15px 0;       /* Space above and below the line */
 }
